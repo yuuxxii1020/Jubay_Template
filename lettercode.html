@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Letter</title>
+
+<style>
+/* 🌸 GLOBAL STYLE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #ffe6ea, #fff6f0);
+  min-height: 100vh;
+  overflow-x: hidden;
+  animation: fadeIn 2s ease-in;
+}
+
+/* 💫 FADE IN */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 🌸 HEADER */
+header {
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #5a3e36;
+}
+
+header p {
+  color: #7a5a52;
+  margin-top: 8px;
+}
+
+/* 🌸 MAIN LAYOUT */
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* 🖼️ LEFT SIDE */
+.gallery {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+/* 📸 POLAROID STYLE */
+.photo {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo:hover {
+  transform: scale(1.05) rotate(1deg);
+}
+
+/* 💌 RIGHT SIDE */
+.letter {
+  flex: 1;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.letter h2 {
+  color: #5a3e36;
+  margin-bottom: 15px;
+}
+
+.letter p {
+  color: #4a3a35;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+/* 💖 HEART DECOR */
+.heart {
+  color: #ff5c8a;
+  font-size: 20px;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* 💌 ENTRANCE SCREEN */
+#entrance {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ffe6ea, #fff6f0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999;
+  animation: fadeIn 1.5s ease-in;
+}
+
+/* 💖 ENTRANCE TITLE */
+#entrance h1 {
+  font-size: 2.2rem;
+  color: #5a3e36;
+  margin-bottom: 10px;
+}
+
+/* 💌 OPEN BUTTON */
+#openBtn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #ff6f91;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: 0.3s ease;
+}
+
+#openBtn:hover {
+  transform: scale(1.05);
+  background: #ff4f7a;
+}
+
+/* 🌫 FADE OUT */
+.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: 1s ease;
+}
+
+/* 💌 MAJESTIC LOVE LETTER BACKGROUND */
+#entrance {
+  overflow: hidden;
+}
+
+/* ✉️ FLOATING LETTERS BACKGROUND */
+.letters-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* 📩 ENVELOPE/LETTER SHAPES */
+.letter-float {
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 105, 135, 0.4);
+  border-radius: 6px;
+  animation: floatLetters 8s linear infinite;
+  opacity: 0.6;
+}
+
+/* ✨ FLOAT ANIMATION */
+@keyframes floatLetters {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 💖 SOFT GLOW PARTICLES */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ff6f91;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: glow 5s infinite ease-in-out;
+}
+
+@keyframes glow {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(2); opacity: 1; }
+}
+
+/* 💌 CENTER CONTENT LAYER */
+.entrance-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* 💌 CLICK TO REVEAL LETTER */
+.reveal-btn {
+  color: #ff5c8a;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+.reveal-btn:hover {
+  transform: scale(1.05);
+}
+
+.hidden-letter {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.8s ease;
+}
+
+.hidden-letter.show {
+  opacity: 1;
+  max-height: 500px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>To My Love</h1>
+  <p>Every moment with you feels special.</p>
+</header>
+
+<div class="container">
+
+  <!-- 🖼️ LEFT SIDE -->
+  <div class="gallery">
+    <div class="photo" style="background-image:url('file:///C:/Users/User/Downloads/IMG_20260510_161115.jpg');"></div>
+    <div class="photo" style="background-image:url('file:///C:/Users/User/Downloads/IMG_20260510_161111%20(1).jpg');"></div>
+    <div class="photo" style="background-image:url('file:///C:/Users/User/Downloads/IMG_20260510_161107.jpg');"></div>
+    <div class="photo" style="background-image:url('file:///C:/Users/User/Downloads/IMG_20260510_161104.jpg');"></div>
+  </div>
+
+  <!-- 💌 RIGHT SIDE -->
+  <div class="letter">
+    <h2>My Letter <span class="heart">❤</span></h2>
+    <p>
+        <span class="reveal-btn" id="revealBtn">👉 Click this letter</span>
+        <span class="hidden-letter" id="letterText">
+        Happy monthsary, baby. I’m really glad we found our way back to each other. Thank you for still choosing me and loving me again. I hope this time we do better and stay stronger together. I’m looking forward to more days and memories with you. I love you.
+        </span>
+    </p>
+  </div>
+
+<div id="entrance">
+
+  <!-- 💌 BACKGROUND EFFECT -->
+  <div class="letters-bg">
+    <div class="letter-float" style="left:10%; animation-delay:0s;"></div>
+    <div class="letter-float" style="left:25%; animation-delay:2s;"></div>
+    <div class="letter-float" style="left:40%; animation-delay:4s;"></div>
+    <div class="letter-float" style="left:60%; animation-delay:1s;"></div>
+    <div class="letter-float" style="left:75%; animation-delay:3s;"></div>
+    <div class="letter-float" style="left:90%; animation-delay:5s;"></div>
+
+    <!-- 💖 PARTICLES -->
+    <div class="particle" style="top:20%; left:15%;"></div>
+    <div class="particle" style="top:40%; left:70%;"></div>
+    <div class="particle" style="top:65%; left:30%;"></div>
+    <div class="particle" style="top:80%; left:85%;"></div>
+  </div>
+
+  <!-- 💌 MAIN CONTENT -->
+  <div class="entrance-content">
+    <h1>💖 A Love Letter Awaits 💖</h1>
+    <p style="color:#7a5a52; margin-bottom:20px;">
+      A message sealed with love...
+    </p>
+    <button id="openBtn">Open Letter</button>
+  </div>
+
+</div>
+
+</div>
+<script>
+const entrance = document.getElementById("entrance");
+const btn = document.getElementById("openBtn");
+
+btn.addEventListener("click", () => {
+  entrance.classList.add("hide");
+});
+</script>
+
+<script>
+const revealBtn = document.getElementById("revealBtn");
+const letterText = document.getElementById("letterText");
+
+revealBtn.addEventListener("click", () => {
+  letterText.classList.add("show");
+  revealBtn.style.display = "none";
+});
+</script>
+</body>
+</html>
